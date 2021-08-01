@@ -1,28 +1,56 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <div class="text-center">
+      {{value}}
+      <br />
+      {{computedText}}
+      <br />  
+      <br />  
+
+      <v-btn
+        depressed
+        color="primary"
+        @click="onClick"
+        style="width: 100px;"
+      >
+        Click me
+      </v-btn>
+    </div>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  data: () => ({
+    value: 0,
+  }),
+  watch: {
+    value(newVal, oldVal) {
+      console.log('newVal', newVal);
+      console.log('oldVal', oldVal);
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+      if(newVal > 5) { 
+        alert('You clicked the button more than 5 times...');
+      }
+    }
+  },
+  methods: {
+    onClick() {
+      this.value +=1;
+    },
+  },
+  computed: {
+    computedText() {
+      return 'Button clicked ' + this.value + ' time.'
+    }
+  },
+  created() {
+    console.log('Created');
+  },
+  mounted() {
+    console.log('Mounted');
+  }
+};
+</script>
