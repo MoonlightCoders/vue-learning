@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <div class="text-center">
+      Hello World
       {{ value }} - {{userName}}
       <br />
       {{ computedText }}
